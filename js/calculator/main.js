@@ -58,10 +58,19 @@ if (tipo === 1) {
     
     const segunda_derivada = derivadaString(derivada);
     const segundaDerivadaFormatada = formatarDerivada(segunda_derivada);
-    console.log(`Segunda derivada: f''(x) = ${segundaDerivadaFormatada}`);
+    console.log(`Segunda derivada: f''(x) = ${segundaDerivadaFormatada}\n`);
     
     const inicio = Number(prompt("Entre com o início do intervalo para busca do ponto crítico: "));
     const fim = Number(prompt("Entre com o fim do intervalo para busca do ponto crítico: "));
+
+    if (inicio > fim) {
+        console.log("O início do intervalo não pode ser maior que o fim.\n");
+        process.exit(1);
+    } else if (inicio === fim) {
+        console.log("O início do intervalo não pode ser igual ao o fim.\n");
+        process.exit(1);
+    }
+
     // Encontrar pontos críticos
     const pontos_criticos = encontrar_pontos_criticos(derivada, inicio, fim);
     
