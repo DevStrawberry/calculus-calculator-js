@@ -54,18 +54,57 @@ function trapezio(funcao, a, b, n) {
     return soma * dx;
 }
 
+function simpson(funcao, a, b, n) {
+    // n deve ser par para Simpson
+    if (n % 2 !== 0) n++;
+
+    const h = (b - a) / n;
+    let soma = 0;
+    
+    const fa = avaliarFuncao(funcao, a);
+    const fb = avaliarFuncao(funcao, b);
+    
+    if (fa === null || fb === null) {
+        return NaN;
+    }
+    
+    soma = fa + fb;
+    
+    // Termos ímpares (coeficiente 4)
+    for (let i = 1; i < n; i += 2) {
+        const xi = a + i * h;
+        const valor = avaliarFuncao(funcao, xi);
+        if (valor !== null && isFinite(valor)) {
+            soma += 4 * valor;
+        }
+    }
+    
+    // Termos pares (coeficiente 2)
+    for (let i = 2; i < n; i += 2) {
+        const xi = a + i * h;
+        const valor = avaliarFuncao(funcao, xi);
+        if (valor !== null && isFinite(valor)) {
+            soma += 2 * valor;
+        }
+    }
+    
+    return (h / 3) * soma;
+}
+
 // Função principal para integração numérica - apenas Riemann e Trapézio
 function integralNumerica(funcao, a, b, n) {
     return {
         riemannEsquerda: riemann(funcao, a, b, n, 'esquerda'),
         riemannDireita: riemann(funcao, a, b, n, 'direita'),
         riemannPontoMedio: riemann(funcao, a, b, n, 'pontoMedio'),
-        trapezio: trapezio(funcao, a, b, n)
+        trapezio: trapezio(funcao, a, b, n),
+        simpson: simpson(funcao, a, b, n)
     };
 }
 
 module.exports = {
     integralNumerica,
     riemann,
-    trapezio
+    trapezio,
+    simpson
 };

@@ -104,6 +104,7 @@ if (tipo === 1) {
         console.log(`Soma de Riemann (direita): ${resultados.riemannDireita.toFixed(6)}`);
         console.log(`Soma de Riemann (ponto médio): ${resultados.riemannPontoMedio.toFixed(6)}`);
         console.log(`Regra dos Trapézios: ${resultados.trapezio.toFixed(6)}`);
+        console.log(`Regra de Simpson: ${resultados.simpson.toFixed(6)}`);
     } catch (error) {
         console.log(`Erro ao calcular integrais numéricas: ${error.message}`);
     }
