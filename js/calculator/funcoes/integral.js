@@ -39,7 +39,6 @@ function riemann(funcao, a, b, n, tipo = 'esquerda') {
     return soma * dx;
 }
 
-// Regra dos Trapézios
 function trapezio(funcao, a, b, n) {
     if (n <= 0) throw new Error("Número de subdivisões deve ser positivo");
     if (a >= b) throw new Error("Limite inferior deve ser menor que o superior");
@@ -91,7 +90,6 @@ function simpson(funcao, a, b, n) {
     return (h / 3) * soma;
 }
 
-// Função principal para integração numérica - apenas Riemann e Trapézio
 function integralNumerica(funcao, a, b, n) {
     return {
         riemannEsquerda: riemann(funcao, a, b, n, 'esquerda'),
