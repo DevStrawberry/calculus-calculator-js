@@ -1,4 +1,4 @@
-function derivadaString(termosStr) {
+export function derivadaString(termosStr) {
     function derivarTermo(termo, sinal = 1) {
         termo = termo.trim();
 
@@ -141,7 +141,7 @@ function derivadaString(termosStr) {
     });
 }
 
-function formatarDerivada(termos) {
+export function formatarDerivada(termos) {
     const termosValidos = termos.filter(t => t !== '0' && !t.includes('Não reconhecido'));
     
     if (termosValidos.length === 0) {
@@ -164,9 +164,4 @@ function formatarDerivada(termos) {
         })
         .join('')
         .trim();
-}
-
-module.exports = {
-    derivadaString,
-    formatarDerivada
 }
