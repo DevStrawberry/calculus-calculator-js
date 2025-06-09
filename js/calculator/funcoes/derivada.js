@@ -1,7 +1,7 @@
 function derivadaString(termosStr) {
     function derivarTermo(termo, sinal = 1) {
         termo = termo.trim();
-        
+
         if (/^-?\d*\.?\d*x\^(-?\d+)$/.test(termo)) { //
             const match = termo.match(/^(-?\d*\.?\d*)x\^(-?\d+)$/); //
             let coefStr = match[1];
@@ -19,8 +19,8 @@ function derivadaString(termosStr) {
                 return '0'; //
             }
 
-            const novoCoef = coef * exp * sinal; //
-            const novoExp = exp - 1; //
+            const novoCoef = coef * exp * sinal;
+            const novoExp = exp - 1;
 
             return novoExp === 0 ? `${novoCoef}` : // Ex: 5x^1 -> 5
                    novoExp === 1 ? `${novoCoef}x` : // Ex: 5x^2 -> 10x
