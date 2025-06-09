@@ -1,11 +1,11 @@
-import * as math from 'mathjs';
+import { evaluate } from 'mathjs';
 
 // Função auxiliar para avaliar a função em um ponto x
 export function avaliarFuncao(funcao, x) {
     try {
         // Substitui 'e' por Math.E para compatibilidade
         const funcaoProcessada = funcao.replace(/\be\b/g, Math.E.toString());
-        return math.evaluate(funcaoProcessada, { x });
+        return evaluate(funcaoProcessada, { x });
     } catch (erro) {
         throw new Error(`Erro ao avaliar a função: ${erro.message}`);
     }
