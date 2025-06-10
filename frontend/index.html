@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Derivadas e Integrais</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Calculadora de Derivadas e Integrais</h1>
+            <p>Análise matemática com visualização gráfica</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('derivada')">Derivadas</button>
+            <button class="tab" onclick="switchTab('integral')">Integrais</button>
+        </div>
+
+        <div id="derivada-tab" class="tab-content active">
+            <div class="main-content">
+                <div class="card">
+                    <h3>Entrada da Função</h3>
+                    <div class="example">
+                        <div class="example-title">Exemplos:</div>
+                        <div class="example-text">x^3 - 3*x + 2*e^x</div>
+                        <div class="example-text">2*x^2 + 5*x - 1</div>
+                        <div class="example-text">e^x + x^(-2)</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="funcao-derivada">f(x) =</label>
+                        <input type="text" id="funcao-derivada" placeholder="x^3 - 3*x + 2*e^x">
+                    </div>
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label for="inicio-intervalo">Início do Intervalo</label>
+                            <input type="number" id="inicio-intervalo" value="-5" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="fim-intervalo">Fim do Intervalo</label>
+                            <input type="number" id="fim-intervalo" value="5" step="0.1">
+                        </div>
+                    </div>
+                    <button class="btn" onclick="calcularDerivada()">Analisar Função</button>
+                </div>
+
+                <div class="card">
+                    <h3>Parâmetros do Gráfico</h3>
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label for="x-min">X Mínimo</label>
+                            <input type="number" id="x-min" value="-5" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="x-max">X Máximo</label>
+                            <input type="number" id="x-max" value="5" step="0.1">
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="atualizarGrafico()">Atualizar Gráfico</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="integral-tab" class="tab-content">
+            <div class="main-content">
+                <div class="card">
+                    <h3>Entrada da Função</h3>
+                    <div class="example">
+                        <div class="example-title">Exemplos:</div>
+                        <div class="example-text">x^2 + 2*x + 1</div>
+                        <div class="example-text">sin(x) + cos(x)</div>
+                        <div class="example-text">e^x - x^3</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="funcao-integral">f(x) =</label>
+                        <input type="text" id="funcao-integral" placeholder="x^2 + 2*x + 1">
+                    </div>
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label for="limite-inferior">Limite Inferior (a)</label>
+                            <input type="number" id="limite-inferior" value="0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="limite-superior">Limite Superior (b)</label>
+                            <input type="number" id="limite-superior" value="2" step="0.1">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="num-intervalos">Número de Intervalos (n)</label>
+                        <input type="number" id="num-intervalos" value="100" min="1">
+                    </div>
+                    <button class="btn" onclick="calcularIntegral()">Calcular Integral</button>
+                </div>
+
+                <div class="card">
+                    <h3>Parâmetros do Gráfico</h3>
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label for="x-min-int">X Mínimo</label>
+                            <input type="number" id="x-min-int" value="-1" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="x-max-int">X Máximo</label>
+                            <input type="number" id="x-max-int" value="3" step="0.1">
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="atualizarGraficoIntegral()">Atualizar Gráfico</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <h3>Resultados</h3>
+            <div id="results-content"></div>
+        </div>
+
+        <div class="chart-container">
+            <h3>Visualização Gráfica</h3>
+            <div class="chart-wrapper">
+                <canvas id="grafico"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+    <script type="module" src="./funcoes/avaliar.js"></script>
+    <script type="module" src="./funcoes/derivada.js"></script>
+    <script type="module" src="./funcoes/ponto_critico.js"></script>
+    <script type="module" src="./funcoes/integral.js"></script>
+</body>
+</html>
