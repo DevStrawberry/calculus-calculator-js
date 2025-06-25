@@ -8,7 +8,7 @@ import './Calculator.css';
 function Calculator() {
     // --- ESTADOS PARA OS INPUTS ---
     const [operation, setOperation] = useState('derivative');
-    const [expression, setExpression] = useState('x^3 - 3x');
+    const [expression, setExpression] = useState('x^3 - 3*x');
     // Intervalo do Gráfico
     const [intervalStart, setIntervalStart] = useState('-4');
     const [intervalEnd, setIntervalEnd] = useState('4');
