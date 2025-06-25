@@ -83,17 +83,17 @@ A estrutura de pastas principal está organizada da seguinte forma:
 
 CalculadoraDerivadaIntegral/
 ├── .github/
-│ └── workflows/ # Configuração do deploy automático (GitHub Actions)
+│ └── workflows/ # ⚙️ Configuração do deploy automático (GitHub Actions)
 ├── frontend/
-│ ├── public/ # Arquivos estáticos e index.html
+│ ├── public/ # 🌐 Arquivos estáticos e index.html
 │ ├── src/
-│ │ ├── components/ # Componentes React (Calculator, FunctionGraph)
-│ │ ├── logic/ # Lógica principal do cálculo (calculatorEngine)
-│ │ ├── App.js # Componente principal da aplicação
-│ │ └── index.js # Ponto de entrada do React
-│ ├── package.json # Dependências e scripts
-├── README.md # Este arquivo
-└── screenshot.png # A captura de tela do seu projeto
+│ │ ├── components/ # 🧩 Componentes React (Calculator, FunctionGraph)
+│ │ ├── logic/ # 🧠 Lógica principal do cálculo (calculatorEngine)
+│ │ ├── App.js # 🏠 Componente principal da aplicação
+│ │ └── index.js # 🚀 Ponto de entrada do React
+│ ├── package.json # 📦 Dependências e scripts do frontend
+├── README.md # 📘 Este arquivo
+└── screenshot.png # 🖼️ Captura de tela do projeto
 
 ---
 
