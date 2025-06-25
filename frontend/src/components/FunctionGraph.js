@@ -63,6 +63,8 @@ function FunctionGraph({ graphData, functionLabel }) {
                 display: true,
                 text: 'f(x)'
             },
+            min: graphData.dataMin,
+            max: graphData.dataMax,
             grace: '5%'
         },
         x: {

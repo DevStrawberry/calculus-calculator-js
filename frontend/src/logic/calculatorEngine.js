@@ -93,7 +93,7 @@ export function performIntegralAnalysis(funcao, a, b, n) {
 // NOVA FUNÇÃO PARA GERAR DADOS DO GRÁFICO
 export function generateGraphData(funcao, min = -10, max = 10, steps = 200) {
     if (!funcao) {
-        return { labels: [], data: [] };
+        return { labels: [], data: [], dataMin: 0, dataMax: 0 };
     }
 
     const labels = []; // Eixo X
@@ -101,24 +101,42 @@ export function generateGraphData(funcao, min = -10, max = 10, steps = 200) {
     const stepSize = (max - min) / (steps - 1);
     
     try {
-        // Tenta compilar a função uma vez para performance
         const node = math.parse(funcao);
         const code = node.compile();
 
         for (let i = 0; i < steps; i++) {
             const x = min + i * stepSize;
-            labels.push(x.toFixed(2)); // Adiciona o ponto X
-
-            // Define o valor de 'x' para a expressão e calcula
+            labels.push(x.toFixed(2));
             const y = code.evaluate({ x: x });
-            data.push(y); // Adiciona o ponto Y
+            data.push(y);
         }
+
+        // --- INÍCIO DA MODIFICAÇÃO IMPORTANTE ---
+
+        // Se não houver dados, retorna um estado seguro.
+        if (data.length === 0) {
+            return { labels: [], data: [], dataMin: 0, dataMax: 10 };
+        }
+
+        // Calcula os valores mínimo e máximo dos dados do eixo Y.
+        const minY = Math.min(...data);
+        const maxY = Math.max(...data);
         
-        return { labels, data };
+        // Calcula um "padding" de 10% da altura total do gráfico para que a linha não toque nas bordas.
+        // Se a linha for reta (min === max), adiciona um padding de 1 para criar espaço.
+        const padding = (maxY - minY) * 0.1 || 1;
+
+        // Retorna o objeto completo com os limites calculados.
+        return { 
+            labels, 
+            data, 
+            dataMin: minY - padding, 
+            dataMax: maxY + padding 
+        };
+        // --- FIM DA MODIFICAÇÃO IMPORTANTE ---
 
     } catch (error) {
         console.error("Erro ao gerar dados do gráfico:", error);
-        // Retorna vazio em caso de erro de parsing
-        return { labels: [], data: [] };
+        return { labels: [], data: [], dataMin: 0, dataMax: 0 };
     }
 }
