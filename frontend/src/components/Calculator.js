@@ -13,8 +13,8 @@ function Calculator() {
     const [intervalStart, setIntervalStart] = useState('-2');
     const [intervalEnd, setIntervalEnd] = useState('2');
     // NOVOS ESTADOS PARA O INTERVALO DO PONTO CRÍTICO
-    const [criticalStart, setCriticalStart] = useState('-2');
-    const [criticalEnd, setCriticalEnd] = useState('2');
+    const [criticalStart, setCriticalStart] = useState('-10');
+    const [criticalEnd, setCriticalEnd] = useState('10');
     // Inputs da Integral
     const [integralA, setIntegralA] = useState('0');
     const [integralB, setIntegralB] = useState('1');
