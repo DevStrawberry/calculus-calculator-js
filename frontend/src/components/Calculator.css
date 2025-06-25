@@ -1,0 +1,121 @@
+/* frontend/src/components/Calculator.css */
+
+.calculator-container {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.calculator-container h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    flex: 1; /* Permite que os grupos de input cresçam igualmente */
+}
+
+.input-row {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os campos na mesma linha */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input[type="text"],
+.input-group input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.operation-selection {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.operation-selection label {
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.operation-selection input[type="radio"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.calculate-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Pequeno espaço acima do botão */
+}
+
+.calculate-button:hover {
+    background-color: #0056b3;
+}
+
+.graph-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.result-display {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.result-display h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.result-display p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.result-display ul {
+    padding-left: 20px;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-top: 20px;
+    font-weight: bold;
+}

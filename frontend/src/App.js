@@ -1,23 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import './App.css'; // Pode manter ou limpar, dependendo da sua necessidade
+import Calculator from './components/Calculator'; // Importa o componente da calculadora
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Calculator /> {/* Renderiza sua calculadora aqui */}
     </div>
   );
 }

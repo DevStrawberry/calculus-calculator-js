@@ -1,6 +1,6 @@
-import { derivadaString, formatarDerivada } from "./funcoes/derivada.js";
-import { integralNumerica } from "./funcoes/integral.js";
-import { encontrar_pontos_criticos, classificar_ponto_critico } from "./funcoes/ponto_critico.js";
+import { derivadaString, formatarDerivada } from "../frontend/src/logic/funcoes/derivada.js";
+import { integralNumerica } from "../frontend/src/logic/funcoes/integral.js";
+import { encontrar_pontos_criticos, classificar_ponto_critico } from "../frontend/src/logic/funcoes/ponto_critico.js";
 import promptSync from "prompt-sync";
 const prompt = promptSync();
 
@@ -11,7 +11,7 @@ if (tipo !== 1 && tipo !== 2) {
     process.exit(1);
 }
 
-function nova_funcao() {
+export function nova_funcao() {
     console.log("\nFunção de exemplo: f(x) = x^3 - 3x + 2e^x");
     let funcao = prompt("Entre com a função: f(x) = ");
     funcao = funcao.replace(/\s+/g, ''); // Remove espaços
