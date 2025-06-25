@@ -94,7 +94,7 @@
 
 @media (max-width: 600px) {
     .graph-container {
-        aspect-ratio: 4 / 3; 
+        aspect-ratio: 1 / 1; 
     }
 }
 
