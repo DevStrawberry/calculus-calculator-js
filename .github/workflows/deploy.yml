@@ -1,0 +1,62 @@
+# Nome do workflow que aparecerá na aba "Actions" do GitHub
+name: Deploy React App to GitHub Pages
+
+# Gatilho: Executar este workflow sempre que houver um push para o branch 'main'
+on:
+  push:
+    branches:
+      - main  # ou o nome do seu branch principal, ex: 'master'
+
+# Permissões necessárias para que a Action possa publicar no GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Tarefas a serem executadas
+jobs:
+  # Define uma única tarefa chamada 'deploy'
+  deploy:
+    # Ambiente onde a tarefa será executada
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # URL do site publicado
+
+    # Máquina virtual que será usada (Ubuntu é o padrão e recomendado)
+    runs-on: ubuntu-latest
+
+    # Passos da tarefa
+    steps:
+      # 1. Baixa o código do seu repositório
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Use uma versão LTS do Node
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
+
+      # 3. Instala as dependências e constrói o projeto React
+      - name: Install and Build
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+
+      # 4. Configura a página para o deploy
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 5. Faz o upload do build como um artefato para o deploy
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'frontend/build' # Caminho para a pasta de build do seu React
+
+      # 6. Faz o deploy do artefato no GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
