@@ -95,7 +95,7 @@ CalculadoraDerivadaIntegral/
 │   ├── package.json         # 📦 Dependências e scripts do frontend
 ├── README.md                # 📘 Este arquivo
 └── screenshot.png           # 🖼️ Captura de tela do projeto
-
+```
 ---
 
 ## 📄 Licença
