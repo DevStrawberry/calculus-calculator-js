@@ -82,7 +82,8 @@ A aplicação será aberta automaticamente no seu navegador no endereço `http:/
 A estrutura de pastas principal está organizada da seguinte forma:
 
 CalculadoraDerivadaIntegral/
-├── .github/workflows/ # Configuração do deploy automático (GitHub Actions)
+├── .github/
+│ └── workflows/ # Configuração do deploy automático (GitHub Actions)
 ├── frontend/
 │ ├── public/ # Arquivos estáticos e index.html
 │ ├── src/
@@ -91,7 +92,8 @@ CalculadoraDerivadaIntegral/
 │ │ ├── App.js # Componente principal da aplicação
 │ │ └── index.js # Ponto de entrada do React
 │ ├── package.json # Dependências e scripts
-└── README.md
+├── README.md # Este arquivo
+└── screenshot.png # A captura de tela do seu projeto
 
 ---
 
