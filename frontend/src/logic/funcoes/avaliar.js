@@ -100,6 +100,8 @@ export function expressaoParaTermos(expressao) {
                     inicio = i;
                 }
                 break;
+            default:
+                break;
         }
     }
 
