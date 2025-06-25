@@ -3,8 +3,8 @@ export function derivadaString(termosStr) {
         termo = termo.trim();
 
         // Polinomial: ax^n ou x^n
-        if (/^-?\d*\.?\d*x\^(-?\d+(\.\d+)?)$/.test(termo)) {
-            const match = termo.match(/^(-?\d*\.?\d*)x\^(-?\d+(\.\d+)?)$/);
+        if (/^-?\d*\.?\d*x\^(-?\d+)$/.test(termo)) { //
+            const match = termo.match(/^(-?\d*\.?\d*)x\^(-?\d+)$/); //
             let coefStr = match[1];
 
             const coef = parseFloat(
@@ -13,7 +13,7 @@ export function derivadaString(termosStr) {
                 coefStr
             );
 
-            const exp = parseFloat(match[2]);
+            const exp = parseInt(match[2]); // expoente agora pode ser negativo
             
             // Se o expoente for 0, a derivada é 0 (constante)
             if (exp === 0) {
@@ -23,17 +23,9 @@ export function derivadaString(termosStr) {
             const novoCoef = coef * exp * sinal;
             const novoExp = exp - 1;
 
-            if (novoExp === 0) {
-                return novoCoef.toString();
-            } else if (novoExp === 1) {
-                return novoCoef === 1 ? 'x' : 
-                       novoCoef === -1 ? '-x' : 
-                       `${novoCoef}x`;
-            } else {
-                return novoCoef === 1 ? `x^${novoExp}` :
-                       novoCoef === -1 ? `-x^${novoExp}` :
-                       `${novoCoef}x^${novoExp}`;
-            }
+            return novoExp === 0 ? `${novoCoef}` : // Ex: 5x^1 -> 5
+                   novoExp === 1 ? `${novoCoef}x` : // Ex: 5x^2 -> 10x
+                   `${novoCoef}x^${novoExp}`; // Ex: 5x^3 -> 15x^2, ou 5x^-2 -> -10x^-3
 
         // Linear: ax ou x
         } else if (/^-?\d*\.?\d*x$/.test(termo)) {
@@ -45,12 +37,12 @@ export function derivadaString(termosStr) {
                 coefStr
             );
 
-            return (coef * sinal).toString();
+            return `${coef * sinal}`;
 
         // Exponencial: ae^x ou ae^(x)
         } else if (/^-?\d*\.?\d*e\^/.test(termo)) {
             const match = termo.match(/^(-?\d*\.?\d*)e\^(.*)$/);
-            if (!match) return `0`;
+            if (!match) return `Não reconhecido: ${termo}`;
 
             const coefStr = match[1];
             let argumento = match[2];
@@ -66,52 +58,23 @@ export function derivadaString(termosStr) {
             coef *= sinal;
 
             // Para e^x, a derivada é simplesmente o coeficiente * e^x
-            if (argumento === 'x' || argumento === '') {
+            if (argumento === 'x') {
                 return coef === 1 ? `e^x` :
                        coef === -1 ? `-e^x` :
                        `${coef}e^x`;
             } else {
-                // Para casos mais complexos, mantém a forma original
-                return coef === 1 ? `e^${argumento}` :
-                       coef === -1 ? `-e^${argumento}` :
-                       `${coef}e^${argumento}`;
+                // Para casos mais complexos como e^(2x), precisaria de regra da cadeia
+                return coef === 1 ? `e^(${argumento})` :
+                       coef === -1 ? `-e^(${argumento})` :
+                       `${coef}e^(${argumento})`;
             }
-
-        // Funções trigonométricas
-        } else if (/^-?\d*\.?\d*sin\(x\)$/.test(termo)) {
-            const match = termo.match(/^(-?\d*\.?\d*)sin\(x\)$/);
-            let coefStr = match[1];
-            
-            const coef = parseFloat(
-                coefStr === '' || coefStr === '+' ? 1 :
-                coefStr === '-' ? -1 :
-                coefStr
-            ) * sinal;
-            
-            return coef === 1 ? 'cos(x)' :
-                   coef === -1 ? '-cos(x)' :
-                   `${coef}cos(x)`;
-                   
-        } else if (/^-?\d*\.?\d*cos\(x\)$/.test(termo)) {
-            const match = termo.match(/^(-?\d*\.?\d*)cos\(x\)$/);
-            let coefStr = match[1];
-            
-            const coef = parseFloat(
-                coefStr === '' || coefStr === '+' ? 1 :
-                coefStr === '-' ? -1 :
-                coefStr
-            ) * sinal;
-            
-            return coef === 1 ? '-sin(x)' :
-                   coef === -1 ? 'sin(x)' :
-                   `${-coef}sin(x)`;
 
         // Constante: número puro
         } else if (/^-?\d+(\.\d+)?$/.test(termo)) {
             return '0';
         }
 
-        return '0'; // Termo não reconhecido retorna 0
+        return `Não reconhecido: ${termo}`;
     }
 
     function processarSubtermos(expressao, sinalPrincipal = 1) {
@@ -157,7 +120,6 @@ export function derivadaString(termosStr) {
         });
     }
 
-    // Processa cada termo da entrada
     return termosStr.flatMap((termoOriginal) => {
         let termo = termoOriginal.trim();
         let sinal = 1;
@@ -180,7 +142,7 @@ export function derivadaString(termosStr) {
 }
 
 export function formatarDerivada(termos) {
-    const termosValidos = termos.filter(t => t !== '0' && t.trim() !== '');
+    const termosValidos = termos.filter(t => t !== '0' && !t.includes('Não reconhecido'));
     
     if (termosValidos.length === 0) {
         return '0';

@@ -1,22 +1,11 @@
-import { avaliar } from './avaliar.js';
+import { evaluate } from 'mathjs';
 
 // Função auxiliar para avaliar a função em um ponto x
 export function avaliarFuncao(funcao, x) {
     try {
-        // Se funcao for string, usa o sistema de avaliação próprio
-        if (typeof funcao === 'string') {
-            // Processa a string da função para o formato esperado
-            const funcaoProcessada = funcao
-                .replace(/\be\b/g, 'e^x')  // Substitui 'e' isolado por 'e^x'
-                .replace(/\*\*/g, '^')     // Converte ** para ^
-                .replace(/Math\.E/g, 'e^x'); // Converte Math.E para e^x
-                
-            return avaliar(funcaoProcessada, x);
-        } else if (Array.isArray(funcao)) {
-            return avaliar(funcao, x);
-        }
-        
-        throw new Error('Formato de função não suportado');
+        // Substitui 'e' por Math.E para compatibilidade
+        const funcaoProcessada = funcao.replace(/\be\b/g, Math.E.toString());
+        return evaluate(funcaoProcessada, { x });
     } catch (erro) {
         throw new Error(`Erro ao avaliar a função: ${erro.message}`);
     }
@@ -45,11 +34,7 @@ export function riemann(funcao, a, b, n, tipo = 'esquerda') {
             default:
                 throw new Error("Tipo deve ser 'esquerda', 'direita' ou 'pontoMedio'");
         }
-        
-        const valor = avaliarFuncao(funcao, xi);
-        if (isFinite(valor)) {
-            soma += valor;
-        }
+        soma += avaliarFuncao(funcao, xi);
     }
     return soma * dx;
 }
@@ -59,22 +44,11 @@ export function trapezio(funcao, a, b, n) {
     if (a >= b) throw new Error("Limite inferior deve ser menor que o superior");
     
     const dx = (b - a) / n;
-    
-    const fa = avaliarFuncao(funcao, a);
-    const fb = avaliarFuncao(funcao, b);
-    
-    if (!isFinite(fa) || !isFinite(fb)) {
-        throw new Error("Função não é finita nos extremos do intervalo");
-    }
-    
-    let soma = (fa + fb) / 2;
+    let soma = (avaliarFuncao(funcao, a) + avaliarFuncao(funcao, b)) / 2;
     
     for (let i = 1; i < n; i++) {
         const xi = a + i * dx;
-        const valor = avaliarFuncao(funcao, xi);
-        if (isFinite(valor)) {
-            soma += valor;
-        }
+        soma += avaliarFuncao(funcao, xi);
     }
     return soma * dx;
 }
@@ -89,8 +63,8 @@ export function simpson(funcao, a, b, n) {
     const fa = avaliarFuncao(funcao, a);
     const fb = avaliarFuncao(funcao, b);
     
-    if (!isFinite(fa) || !isFinite(fb)) {
-        throw new Error("Função não é finita nos extremos do intervalo");
+    if (fa === null || fb === null) {
+        return NaN;
     }
     
     soma = fa + fb;
@@ -99,7 +73,7 @@ export function simpson(funcao, a, b, n) {
     for (let i = 1; i < n; i += 2) {
         const xi = a + i * h;
         const valor = avaliarFuncao(funcao, xi);
-        if (isFinite(valor)) {
+        if (valor !== null && isFinite(valor)) {
             soma += 4 * valor;
         }
     }
@@ -108,7 +82,7 @@ export function simpson(funcao, a, b, n) {
     for (let i = 2; i < n; i += 2) {
         const xi = a + i * h;
         const valor = avaliarFuncao(funcao, xi);
-        if (isFinite(valor)) {
+        if (valor !== null && isFinite(valor)) {
             soma += 2 * valor;
         }
     }
@@ -117,15 +91,11 @@ export function simpson(funcao, a, b, n) {
 }
 
 export function integralNumerica(funcao, a, b, n) {
-    try {
-        return {
-            riemannEsquerda: riemann(funcao, a, b, n, 'esquerda'),
-            riemannDireita: riemann(funcao, a, b, n, 'direita'),
-            riemannPontoMedio: riemann(funcao, a, b, n, 'pontoMedio'),
-            trapezio: trapezio(funcao, a, b, n),
-            simpson: simpson(funcao, a, b, n)
-        };
-    } catch (erro) {
-        throw new Error(`Erro no cálculo da integral: ${erro.message}`);
-    }
+    return {
+        riemannEsquerda: riemann(funcao, a, b, n, 'esquerda'),
+        riemannDireita: riemann(funcao, a, b, n, 'direita'),
+        riemannPontoMedio: riemann(funcao, a, b, n, 'pontoMedio'),
+        trapezio: trapezio(funcao, a, b, n),
+        simpson: simpson(funcao, a, b, n)
+    };
 }
