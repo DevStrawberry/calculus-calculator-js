@@ -44,6 +44,7 @@ function FunctionGraph({ graphData, functionLabel }) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
