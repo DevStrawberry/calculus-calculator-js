@@ -10,8 +10,8 @@ function Calculator() {
     const [operation, setOperation] = useState('derivative');
     const [expression, setExpression] = useState('x^3 - 3x');
     // Intervalo do Gráfico
-    const [intervalStart, setIntervalStart] = useState('-4');
-    const [intervalEnd, setIntervalEnd] = useState('4');
+    const [intervalStart, setIntervalStart] = useState('-2');
+    const [intervalEnd, setIntervalEnd] = useState('2');
     // NOVOS ESTADOS PARA O INTERVALO DO PONTO CRÍTICO
     const [criticalStart, setCriticalStart] = useState('-2');
     const [criticalEnd, setCriticalEnd] = useState('2');
