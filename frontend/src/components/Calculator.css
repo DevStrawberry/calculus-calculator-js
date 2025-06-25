@@ -92,6 +92,12 @@
     position: relative;
 }
 
+@media (max-width: 600px) {
+    .graph-container {
+        aspect-ratio: 4 / 3; 
+    }
+}
+
 .result-display {
     background-color: #e9ecef;
     padding: 20px;
