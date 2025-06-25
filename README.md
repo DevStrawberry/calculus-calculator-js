@@ -1,90 +1,106 @@
-# Calculadora de Derivada e Integral 
-## Calculadora de Máximos e Mínimos de Funções (Polinomiais e Exponenciais)
+# 📊 Calculadora de Derivadas e Integrais
 
-link para acessar a Calculadora: https://devstrawberry.github.io/CalculadoraDerivadaIntegral/
+![Status do Deploy](https://github.com/DevStrawberry/CalculadoraDerivadaIntegral/actions/workflows/deploy.yml/badge.svg)
+![Licença](https://img.shields.io/badge/licença-MIT-blue.svg)
 
-Este projeto tem como objetivo desenvolver, em **JavaScript**, uma calculadora para encontrar os **pontos de máximo e mínimo** de funções **polinomiais** e **exponenciais**, com entrada via terminal (`prompt`, `console.log`) e também via uma interface web (HTML + CSS).
+Uma aplicação web interativa e responsiva para análise de funções matemáticas, focada em cálculo diferencial e integral. Ideal para estudantes, professores e entusiastas da matemática que desejam visualizar e compreender o comportamento de funções.
 
----
+## 🚀 Acesso ao Projeto
 
-## 📌 Parte 1: Funções Polinomiais
+**A calculadora está disponível online! Acesse em:**
 
-### Representação Geral
+**[https://devstrawberry.github.io/CalculadoraDerivadaIntegral/](https://devstrawberry.github.io/CalculadoraDerivadaIntegral/)**
 
-Uma função polinomial é dada por:
+### Visualização
 
-$$
-f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1 x + a_0
-$$
-
-Ou:
-
-$$
-f(x) = a(n) \cdot x^n + a(n-1) \cdot x^{n-1} + \cdots + a(1) \cdot x + a(0)
-$$
-
-- O usuário fornece os coeficientes \( a_i \) e os expoentes correspondentes \( i \).
-- A calculadora deve:
-  - Exibir a **primeira derivada** \( f'(x) \)
-  - Exibir a **segunda derivada** \( f''(x) \)
+![Screenshot da Calculadora](./screenshot.png)
+*(Sugestão: tire uma boa captura de tela do seu projeto, salve como `screenshot.png` na pasta raiz e adicione aqui)*
 
 ---
 
-## 📌 Parte 2: Funções Exponenciais
+## ✨ Funcionalidades
 
-### Representação Geral
-
-Para funções exponenciais:
-
-$$
-f(x) = a^x \quad \text{com} \quad a \in \mathbb{R}, \ 0 < a \ne 1, \ f: \mathbb{R} \rightarrow \mathbb{R}_{+}^{*}
-$$
-
-A forma usada é:
-
-$$
-f(x) = a^x
-$$
-
-### Derivadas
-
-- Primeira derivada:
-
-$$
-\frac{d}{dx} f(x) = a^x \ln a
-$$
-
-- Segunda derivada:
-
-$$
-\frac{d^2}{dx^2} a^x = a^x (\ln a)^2
-$$
+-   **Análise de Derivadas:**
+    -   [x] Cálculo da primeira e segunda derivada de uma função polinomial.
+    -   [x] Localização de pontos críticos (máximos, mínimos e de inflexão) em um intervalo definido.
+    -   [x] Classificação dos pontos críticos encontrados.
+-   **Análise de Integrais:**
+    -   [x] Cálculo de integrais definidas através de métodos numéricos.
+    -   [x] Implementação da Soma de Riemann (esquerda, direita e ponto médio).
+    -   [x] Implementação da Regra dos Trapézios.
+    -   [x] Implementação da Regra de Simpson.
+-   **Visualização Gráfica:**
+    -   [x] Geração de um gráfico interativo da função em um intervalo especificado.
+    -   [x] Eixos dinâmicos que se ajustam aos valores da função para melhor visualização.
+-   **Design Responsivo:**
+    -   [x] Interface totalmente adaptável para uso em desktops, tablets e smartphones (vertical e horizontal).
 
 ---
 
-## 📌 Parte 3: Função Exponencial Natural
+## 🛠️ Tecnologias Utilizadas
 
-A função exponencial natural \( e^x \) é definida como:
+Este projeto foi construído com tecnologias modernas do ecossistema JavaScript:
 
-$$
-e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \lim_{n \to \infty} \left(1 + \frac{x}{n} \right)^n
-$$
-
----
-
-## 💡 Requisitos Técnicos
-
-- A entrada e saída devem funcionar:
-  - Via `prompt` e `console.log` no navegador
-  - Via interface web (HTML + CSS)
-- A lógica principal será desenvolvida em **JavaScript**
-- O conteúdo teórico está sendo desenvolvido na disciplina de **Cálculo**
-- Discussões relevantes serão feitas nesta disciplina para apoiar o desenvolvimento
+-   **Frontend:** [React](https://reactjs.org/)
+-   **Gráficos:** [Chart.js](https://www.chartjs.org/) com a biblioteca [react-chartjs-2](https://react-chartjs-2.js.org/)
+-   **Lógica Matemática:** [Math.js](https://mathjs.org/)
+-   **Hospedagem:** [GitHub Pages](https://pages.github.com/)
+-   **CI/CD (Deploy Automático):** [GitHub Actions](https://github.com/features/actions)
 
 ---
 
-## ✔️ Sugestões de Extensões Futuras
+## 💻 Como Executar o Projeto Localmente
 
-- Gráficos das funções e derivadas com Canvas ou Chart.js
-- Identificação automática dos pontos de máximo e mínimo
-- Suporte a funções mistas (exponenciais + polinomiais)
+Para executar a calculadora no seu ambiente de desenvolvimento, siga os passos abaixo:
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/DevStrawberry/CalculadoraDerivadaIntegral.git
+    ```
+
+2.  **Navegue até a pasta do frontend:**
+    ```bash
+    cd CalculadoraDerivadaIntegral/frontend
+    ```
+
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+4.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm start
+    ```
+
+A aplicação será aberta automaticamente no seu navegador no endereço `http://localhost:3000`.
+
+---
+
+## 📂 Estrutura do Projeto
+
+A estrutura de pastas principal está organizada da seguinte forma:
+
+CalculadoraDerivadaIntegral/
+├── .github/workflows/ # Configuração do deploy automático (GitHub Actions)
+├── frontend/
+│ ├── public/ # Arquivos estáticos e index.html
+│ ├── src/
+│ │ ├── components/ # Componentes React (Calculator, FunctionGraph)
+│ │ ├── logic/ # Lógica principal do cálculo (calculatorEngine)
+│ │ ├── App.js # Componente principal da aplicação
+│ │ └── index.js # Ponto de entrada do React
+│ ├── package.json # Dependências e scripts
+└── README.md
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+---
+
+## 👨‍💻 Autor
+
+Feito com ❤️ por **[DevStrawberry](https://github.com/DevStrawberry)**.
