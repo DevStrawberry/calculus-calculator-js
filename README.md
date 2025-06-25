@@ -1,6 +1,8 @@
 # Calculadora de Derivada e Integral 
 ## Calculadora de Máximos e Mínimos de Funções (Polinomiais e Exponenciais)
 
+link para acessar a Calculadora: https://devstrawberry.github.io/CalculadoraDerivadaIntegral/
+
 Este projeto tem como objetivo desenvolver, em **JavaScript**, uma calculadora para encontrar os **pontos de máximo e mínimo** de funções **polinomiais** e **exponenciais**, com entrada via terminal (`prompt`, `console.log`) e também via uma interface web (HTML + CSS).
 
 ---
