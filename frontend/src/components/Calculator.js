@@ -1,4 +1,4 @@
-// frontend/src/components/Calculator.js (VERSÃO FINAL E COMPLETA)
+// frontend/src/components/Calculator.js (VERSÃO FINAL COM CORREÇÃO DE ROTAÇÃO)
 
 import React, { useState, useEffect } from 'react';
 import { performDerivativeAnalysis, performIntegralAnalysis, generateGraphData } from '../logic/calculatorEngine';
@@ -6,39 +6,55 @@ import FunctionGraph from './FunctionGraph';
 import './Calculator.css';
 
 function Calculator() {
-    // --- ESTADOS PARA OS INPUTS ---
+    // --- ESTADOS PARA OS INPUTS (sem alterações) ---
     const [operation, setOperation] = useState('derivative');
     const [expression, setExpression] = useState('x^3 - 3x');
-    // Intervalo do Gráfico
     const [intervalStart, setIntervalStart] = useState('-2');
     const [intervalEnd, setIntervalEnd] = useState('2');
-    // NOVOS ESTADOS PARA O INTERVALO DO PONTO CRÍTICO
     const [criticalStart, setCriticalStart] = useState('-10');
     const [criticalEnd, setCriticalEnd] = useState('10');
-    // Inputs da Integral
     const [integralA, setIntegralA] = useState('0');
     const [integralB, setIntegralB] = useState('1');
     const [integralN, setIntegralN] = useState('1000');
     
-    // --- ESTADOS PARA RESULTADOS, ERROS E GRÁFICO ---
+    // --- ESTADOS PARA RESULTADOS, ERROS E GRÁFICO (sem alterações) ---
     const [results, setResults] = useState(null);
     const [error, setError] = useState('');
     const [graphData, setGraphData] = useState(null);
 
-    // Efeito para gerar o gráfico quando a expressão ou o intervalo do GRÁFICO mudam
+    // <<< INÍCIO DA CORREÇÃO PARA O BUG DE ROTAÇÃO >>>
+    // 1. Criamos um estado para "lembrar" a largura da tela.
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    // 2. Este useEffect "ouve" as mudanças de tamanho da tela.
+    useEffect(() => {
+        // Função que atualiza nosso estado sempre que a janela é redimensionada.
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        // Adiciona o ouvinte de evento.
+        window.addEventListener('resize', handleResize);
+
+        // IMPORTANTE: Remove o ouvinte quando o componente é desmontado para evitar vazamentos de memória.
+        return () => window.removeEventListener('resize', handleResize);
+    }, []); // O array vazio [] garante que este efeito rode apenas uma vez (na montagem).
+    // <<< FIM DA CORREÇÃO PARA O BUG DE ROTAÇÃO >>>
+
+
+    // Efeito para gerar o gráfico (sem alterações)
     useEffect(() => {
         const data = generateGraphData(expression, Number(intervalStart), Number(intervalEnd));
         setGraphData(data);
     }, [expression, intervalStart, intervalEnd]);
 
-    // --- FUNÇÃO PARA CALCULAR ---
+    // --- FUNÇÃO PARA CALCULAR (sem alterações) ---
     const handleCalculate = () => {
         setResults(null);
         setError('');
 
         try {
             if (operation === 'derivative') {
-                // USA OS NOVOS ESTADOS para a lógica de cálculo
                 const derivativeResults = performDerivativeAnalysis(expression, Number(criticalStart), Number(criticalEnd));
                 setResults({ type: 'derivative', data: derivativeResults });
             } else {
@@ -50,7 +66,7 @@ function Calculator() {
         }
     };
 
-    // --- FUNÇÕES PARA RENDERIZAR OS RESULTADOS ---
+    // --- FUNÇÕES PARA RENDERIZAR OS RESULTADOS (sem alterações) ---
     const renderDerivativeResults = () => {
         if (!results || results.type !== 'derivative') return null;
         const { primeiraDerivada, segundaDerivada, pontosCriticos } = results.data;
@@ -123,7 +139,12 @@ function Calculator() {
             <button onClick={handleCalculate} className="calculate-button">Calcular</button>
 
             <div className="graph-container">
-                <FunctionGraph graphData={graphData} functionLabel={expression} />
+                {/* 3. A prop 'key' força a recriação do componente quando a largura da janela muda. */}
+                <FunctionGraph 
+                    key={windowWidth} 
+                    graphData={graphData} 
+                    functionLabel={expression} 
+                />
             </div>
 
             <div className="result-display">
