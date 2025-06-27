@@ -1,5 +1,9 @@
 /* frontend/src/components/Calculator.css (VERSÃO COMPLETA COM TEMAS) */
 
+* {
+  max-width: 100%;
+}
+
 /* ------------------------------------------- */
 /* 1. DEFINIÇÃO DAS VARIÁVEIS DE TEMA          */
 /* ------------------------------------------- */
@@ -259,6 +263,11 @@ body {
   .graph-container {
     /* Mantém o gráfico quadrado em telas pequenas */
     aspect-ratio: 1 / 1;
+  }
+
+  .graph-container canvas {
+    max-width: 100% !important;
+    height: auto !important;
   }
   
   .theme-selector {
