@@ -104,6 +104,82 @@
   border-color: #000000;
 }
 
+[data-theme="hacker-terminal"] {
+  --bg-color: #000000;
+  --container-bg: #0d0d0d;
+  --text-color: #00ff41;             /* Verde-limão brilhante */
+  --label-color: #00ff41;
+  --border-color: #004d00;             /* Verde escuro */
+  --result-bg: #0d0d0d;
+  --primary-color: #00ff41;
+  --primary-hover-color: #39ff14;         /* Um pouco mais brilhante no hover */
+  --shadow-color: rgba(0, 255, 65, 0.2);
+  --graph-bg: #0d0d0d;
+  --graph-border: #004d00;
+}
+
+[data-theme="hacker-terminal"] .calculate-button {
+  color: #000000; /* Texto preto sobre o fundo verde */
+  font-weight: bold;
+}
+
+[data-theme="hacker-terminal"] .store-link {
+  color: var(--text-color); /* Usa a cor de texto principal (verde) */
+  border-color: var(--text-color); /* Borda também fica verde */
+}
+
+[data-theme="hacker-terminal"] .store-link:hover {
+  background-color: var(--text-color); /* Fundo verde no hover */
+  color: #000000; /* Texto preto no hover para contraste */
+}
+
+[data-theme="kyoto-garden"] {
+  --bg-color: #fdf6e3; /* Cor de pergaminho/papel de arroz */
+  --container-bg: #ffffff;
+  --text-color: #586e75; /* Cinza escuro e suave */
+  --label-color: #657b83;
+  --border-color: #eee8d5;
+  --result-bg: #fdf6e3;
+  --primary-color: #d33682; /* Rosa/magenta suave */
+  --primary-hover-color: #c7337c;
+  --shadow-color: rgba(88, 110, 117, 0.15);
+  --graph-bg: #ffffff;
+  --graph-border: #eee8d5;
+}
+
+/* Regras específicas para o texto dos resultados */
+[data-theme="kyoto-garden"] .result-display {
+  color: #586e75;
+}
+
+[data-theme="synthwave"] {
+  --bg-color: #2a2139; /* Roxo escuro profundo */
+  --container-bg: #39304d;
+  --text-color: #a5f7ff; /* Ciano neon claro */
+  --label-color: #8da7ad;
+  --border-color: #00f6ff; /* Borda ciano brilhante */
+  --result-bg: #39304d;
+  --primary-color: #ff00c1; /* Rosa neon */
+  --primary-hover-color: #ff3ddf;
+  --shadow-color: rgba(255, 0, 193, 0.2);
+  --graph-bg: #39304d;
+  --graph-border: #00f6ff;
+}
+
+/* Efeito de brilho neon nas bordas! */
+[data-theme="synthwave"] .calculator-container,
+[data-theme="synthwave"] .graph-container,
+[data-theme="synthwave"] .result-display {
+  border-width: 2px;
+  box-shadow: 0 0 8px var(--border-color), 0 4px 20px var(--shadow-color);
+}
+
+/* Contraste do texto do botão */
+[data-theme="synthwave"] .calculate-button {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
 /* ------------------------------------------- */
 /* 2. ESTILOS GERAIS USANDO AS VARIÁVEIS       */
 /* ------------------------------------------- */

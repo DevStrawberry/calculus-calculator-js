@@ -8,6 +8,9 @@ const themes = [
     { id: 'light', name: 'Claro (Padrão)', colors: ['#f4f7f9', '#ffffff', '#007bff'] },
     { id: 'dark', name: 'Escuro (Padrão)', colors: ['#121212', '#1e1e1e', '#0d6efd'] },
     { id: 'pokedex', name: 'Pokédex', colors: ['#d32f2f', '#dcdcdc', '#00bcd4'] },
+    { id: 'hacker-terminal', name: 'Terminal Hacker', colors: ['#000000', '#0d0d0d', '#00ff41'] },
+    { id: 'kyoto-garden', name: 'Jardim de Kyoto', colors: ['#fdf6e3', '#ffffff', '#d33682'] },
+    { id: 'synthwave', name: "Synthwave '84", colors: ['#2a2139', '#39304d', '#ff00c1'] },
     { id: 'oceanic', name: 'Oceânico', colors: ['#e0f7fa', '#ffffff', '#00838f'] },
     { id: 'sunset', name: 'Pôr do Sol', colors: ['#fff3e0', '#ffffff', '#ff6f00'] },
 ];
