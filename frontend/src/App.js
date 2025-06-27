@@ -1,20 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext'; // Importa nosso provedor
+import { ThemeProvider } from './context/ThemeContext';
 import Calculator from './components/Calculator';
-import ThemeStore from './components/ThemeStore'; // A nova página que vamos criar
+import ThemeStore from './components/ThemeStore';
 
 function App() {
   return (
-    // 1. Envolvemos tudo no ThemeProvider para que o estado do tema seja global
     <ThemeProvider>
-      {/* 2. Envolvemos tudo no Router para habilitar a navegação */}
-      <Router>
+      {/* 
+        A LINHA MAIS IMPORTANTE DA CORREÇÃO ESTÁ AQUI:
+        A prop 'basename' informa ao Router o caminho base da sua aplicação.
+        Usar 'process.env.PUBLIC_URL' é a maneira correta, pois ele será 
+        preenchido automaticamente com o valor do campo "homepage" do seu package.json 
+        durante o build de produção.
+      */}
+      <Router basename={process.env.PUBLIC_URL}>
         <Routes>
-          {/* Rota para a página principal (a calculadora) */}
+          {/* Agora o Router entenderá que esta rota é, na verdade, '.../CalculadoraDerivadaIntegral/' */}
           <Route path="/" element={<Calculator />} />
           
-          {/* Rota para a nova página da loja de temas */}
+          {/* E esta rota é '.../CalculadoraDerivadaIntegral/store' */}
           <Route path="/store" element={<ThemeStore />} />
         </Routes>
       </Router>
