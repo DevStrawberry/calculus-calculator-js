@@ -1,10 +1,13 @@
-// frontend/src/components/Calculator.js (VERSÃO FINAL COM CORREÇÃO DE ROTAÇÃO)
+// frontend/src/components/Calculator.js (VERSÃO FINAL COM NAVEGAÇÃO E TEMA GLOBAL)
 
 import React, { useState, useEffect } from 'react';
+// <<< 1. IMPORTS NECESSÁRIOS PARA A NAVEGAÇÃO >>>
+import { Link } from 'react-router-dom';
 import { performDerivativeAnalysis, performIntegralAnalysis, generateGraphData } from '../logic/calculatorEngine';
 import FunctionGraph from './FunctionGraph';
 import './Calculator.css';
 
+// <<< 2. O COMPONENTE AGORA É MAIS "LIMPO", POIS A LÓGICA DO TEMA SAIU DAQUI >>>
 function Calculator() {
     // --- ESTADOS PARA OS INPUTS (sem alterações) ---
     const [operation, setOperation] = useState('derivative');
@@ -22,25 +25,13 @@ function Calculator() {
     const [error, setError] = useState('');
     const [graphData, setGraphData] = useState(null);
 
-    // <<< INÍCIO DA CORREÇÃO PARA O BUG DE ROTAÇÃO >>>
-    // 1. Criamos um estado para "lembrar" a largura da tela.
+    // Bug de rotação do celular (sem alterações)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    // 2. Este useEffect "ouve" as mudanças de tamanho da tela.
     useEffect(() => {
-        // Função que atualiza nosso estado sempre que a janela é redimensionada.
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        // Adiciona o ouvinte de evento.
+        const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
-
-        // IMPORTANTE: Remove o ouvinte quando o componente é desmontado para evitar vazamentos de memória.
         return () => window.removeEventListener('resize', handleResize);
-    }, []); // O array vazio [] garante que este efeito rode apenas uma vez (na montagem).
-    // <<< FIM DA CORREÇÃO PARA O BUG DE ROTAÇÃO >>>
-
+    }, []);
 
     // Efeito para gerar o gráfico (sem alterações)
     useEffect(() => {
@@ -52,7 +43,6 @@ function Calculator() {
     const handleCalculate = () => {
         setResults(null);
         setError('');
-
         try {
             if (operation === 'derivative') {
                 const derivativeResults = performDerivativeAnalysis(expression, Number(criticalStart), Number(criticalEnd));
@@ -107,6 +97,9 @@ function Calculator() {
         <div className="calculator-container">
             <h1>Calculadora de Derivadas e Integrais</h1>
             
+            {/* <<< 3. LINK PARA A NOVA PÁGINA DA LOJA >>> */}
+            <Link to="/store" className="store-link">Personalizar Tema</Link>
+            
             <div className="operation-selection">
                 <label><input type="radio" value="derivative" checked={operation === 'derivative'} onChange={(e) => setOperation(e.target.value)} /> Derivada</label>
                 <label><input type="radio" value="integral" checked={operation === 'integral'} onChange={(e) => setOperation(e.target.value)} /> Integral</label>
@@ -139,7 +132,6 @@ function Calculator() {
             <button onClick={handleCalculate} className="calculate-button">Calcular</button>
 
             <div className="graph-container">
-                {/* 3. A prop 'key' força a recriação do componente quando a largura da janela muda. */}
                 <FunctionGraph 
                     key={windowWidth} 
                     graphData={graphData} 
