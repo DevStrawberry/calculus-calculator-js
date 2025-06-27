@@ -234,21 +234,35 @@ body {
 /* 4. MEDIA QUERIES PARA RESPONSIVIDADE        */
 /* ------------------------------------------- */
 @media (max-width: 600px) {
+
   .calculator-container {
-    padding: 15px;
-    margin: 10px;
+    /* Reduz o padding horizontal para dar mais espaço ao conteúdo */
+    padding: 20px 15px;
+    margin: 10px; /* Adiciona uma pequena margem para não colar nas bordas da tela */
+  }
+
+  .calculator-container h1 {
+    /* Diminui o tamanho do título em telas pequenas */
+    font-size: 1.6rem; /* Equivalente a ~25px */
+    line-height: 1.2; /* Melhora o espaçamento se o título quebrar em duas linhas */
+    
+    /* A regra mais importante: permite que palavras longas quebrem se necessário */
+    overflow-wrap: break-word;
   }
   
+  /* Esta regra você já tinha, mas a mantemos aqui por completude */
   .input-row {
     flex-direction: column;
     gap: 0;
   }
   
   .graph-container {
+    /* Mantém o gráfico quadrado em telas pequenas */
     aspect-ratio: 1 / 1;
   }
   
   .theme-selector {
+    /* Move o seletor de tema para o fluxo normal do documento */
     position: static;
     justify-content: flex-end;
     margin-bottom: 15px;
