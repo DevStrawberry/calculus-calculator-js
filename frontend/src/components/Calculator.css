@@ -81,6 +81,7 @@
 /* --- REGRAS ESPECÍFICAS PARA O TEMA POKÉDEX --- */
 /* Garante que o texto seja escuro em fundos claros */
 [data-theme="pokedex"] .result-display,
+[data-theme="pokedex"] .result-display h2,
 [data-theme="pokedex"] .graph-container {
   color: #212121; /* Texto escuro para os resultados e título do gráfico */
 }
