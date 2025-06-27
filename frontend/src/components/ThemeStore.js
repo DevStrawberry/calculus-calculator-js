@@ -7,6 +7,7 @@ import './ThemeStore.css';
 const themes = [
     { id: 'light', name: 'Claro (Padrão)', colors: ['#f4f7f9', '#ffffff', '#007bff'] },
     { id: 'dark', name: 'Escuro (Padrão)', colors: ['#121212', '#1e1e1e', '#0d6efd'] },
+    { id: 'pokedex', name: 'Pokédex', colors: ['#d32f2f', '#dcdcdc', '#00bcd4'] },
     { id: 'oceanic', name: 'Oceânico', colors: ['#e0f7fa', '#ffffff', '#00838f'] },
     { id: 'sunset', name: 'Pôr do Sol', colors: ['#fff3e0', '#ffffff', '#ff6f00'] },
 ];

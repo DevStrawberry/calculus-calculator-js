@@ -64,6 +64,45 @@
   --graph-border: #ffe0b2;
 }
 
+[data-theme="pokedex"] {
+  --bg-color: #1a1a1a;                             /* Fundo escuro, como a tela desligada */
+  --container-bg: #d32f2f;                         /* O vermelho clássico da Pokédex */
+  --text-color: #f5f5f5;                           /* Texto principal claro para contrastar com o vermelho */
+  --label-color: #f5f5f5;                          /* Labels também claros */
+  --border-color: #a02424;                         /* Um vermelho mais escuro para as bordas */
+  --result-bg: #dcdcdc;                            /* Cinza claro do bezel da tela */
+  --primary-color: #00bcd4;                        /* O azul ciano do "botão de câmera" */
+  --primary-hover-color: #0097a7;                  /* Um azul mais escuro para o hover */
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --graph-bg: #dcdcdc;                             /* O gráfico também terá o fundo cinza claro */
+  --graph-border: #a0a0a0;
+}
+
+/* --- REGRAS ESPECÍFICAS PARA O TEMA POKÉDEX --- */
+/* Garante que o texto seja escuro em fundos claros */
+[data-theme="pokedex"] .result-display,
+[data-theme="pokedex"] .graph-container {
+  color: #212121; /* Texto escuro para os resultados e título do gráfico */
+}
+
+/* Estiliza os inputs para parecerem com a tela */
+[data-theme="pokedex"] .input-group input {
+  background-color: #dcdcdc; /* Fundo cinza claro */
+  color: #212121;           /* Texto escuro */
+  border: 2px solid #a0a0a0;   /* Borda um pouco mais forte */
+}
+
+/* O botão 'Personalizar Tema' pode ter as cores do D-Pad */
+[data-theme="pokedex"] .store-link {
+  background-color: #212121;
+  border-color: #212121;
+  color: #f5f5f5;
+}
+[data-theme="pokedex"] .store-link:hover {
+  background-color: #000000;
+  border-color: #000000;
+}
+
 /* ------------------------------------------- */
 /* 2. ESTILOS GERAIS USANDO AS VARIÁVEIS       */
 /* ------------------------------------------- */
