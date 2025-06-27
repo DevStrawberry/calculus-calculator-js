@@ -84,12 +84,12 @@ body {
   padding: 20px 30px;
   border-radius: 12px;
   box-shadow: 0 4px 20px var(--shadow-color);
-  width: 100%;
   max-width: 600px;
   box-sizing: border-box;
   text-align: center;
   position: relative; /* Necessário para posicionar o seletor de tema */
   transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 40px auto;
 }
 
 .calculator-container h1 {
@@ -242,7 +242,7 @@ body {
   .calculator-container {
     /* Reduz o padding horizontal para dar mais espaço ao conteúdo */
     padding: 20px 15px;
-    margin: 10px; /* Adiciona uma pequena margem para não colar nas bordas da tela */
+    margin: 20px 10px; /* Adiciona uma pequena margem para não colar nas bordas da tela */
   }
 
   .calculator-container h1 {
