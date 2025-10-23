@@ -1,6 +1,6 @@
 # 📊 Calculadora de Derivadas e Integrais
 
-![Status do Deploy](https://github.com/DevStrawberry/CalculadoraDerivadaIntegral/actions/workflows/deploy.yml/badge.svg)
+![Status do Deploy](https://github.com/DevStrawberry/calculus-calculator-js/actions/workflows/deploy.yml/badge.svg)
 ![Licença](https://img.shields.io/badge/licença-MIT-blue.svg)
 
 Uma aplicação web interativa e responsiva para análise de funções matemáticas, focada em cálculo diferencial e integral. Ideal para estudantes, professores e entusiastas da matemática que desejam visualizar e compreender o comportamento de funções.
@@ -55,12 +55,12 @@ Para executar a calculadora no seu ambiente de desenvolvimento, siga os passos a
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/DevStrawberry/CalculadoraDerivadaIntegral.git
+    git clone https://github.com/DevStrawberry/calculus-calculator-js.git
     ```
 
 2.  **Navegue até a pasta do frontend:**
     ```bash
-    cd CalculadoraDerivadaIntegral/frontend
+    cd calculus-calculator-js/frontend
     ```
 
 3.  **Instale as dependências:**
@@ -82,7 +82,7 @@ A aplicação será aberta automaticamente no seu navegador no endereço `http:/
 A estrutura de pastas principal está organizada da seguinte forma:
 
 ```text
-CalculadoraDerivadaIntegral/
+calculus-calculator-js/
 ├── .github/
 │   └── workflows/           # ⚙️ Configuração do deploy automático (GitHub Actions)
 ├── frontend/
