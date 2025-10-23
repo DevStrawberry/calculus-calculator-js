@@ -9,7 +9,7 @@ Uma aplicação web interativa e responsiva para análise de funções matemáti
 
 **A calculadora está disponível online! Acesse em:**
 
-**[https://devstrawberry.github.io/CalculadoraDerivadaIntegral/](https://devstrawberry.github.io/CalculadoraDerivadaIntegral/)**
+**[https://devstrawberry.github.io/calculus-calculator-js/](https://devstrawberry.github.io/calculus-calculator-js/)**
 
 ### Visualização
 
